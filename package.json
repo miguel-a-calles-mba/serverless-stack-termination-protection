@@ -1,0 +1,33 @@
+{
+  "name": "serverless-stack-termination-protection",
+  "version": "0.0.1",
+  "description": "Serverless plugin to update the CloudFormation stack termination protection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection.git"
+  },
+  "keywords": [
+    "serverless",
+    "plugin",
+    "aws",
+    "cloudformation",
+    "stack",
+    "termination",
+    "protection"
+  ],
+  "author": "Miguel A. Calles, MBA <miguelacallesmba@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection/issues"
+  },
+  "homepage": "https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection#readme",
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0"
+  }
+}
