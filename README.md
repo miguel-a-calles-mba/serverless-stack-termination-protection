@@ -2,6 +2,11 @@
 
 Following deployment, the Serverless Framework does not have the option to enable termination protection for the CloudFormation stack. This plugins will enable the termination protection. It can also disable it by using a command line option. This plugin is designed for the Serverless Framework 1.x.
 
+## Requirements
+
+- Serverless Framework 1.x.
+- Node 8.x or greater.
+
 ## Installation
 
 Install with **npm**:
