@@ -22,12 +22,6 @@ plugins:
   - serverless-stack-termination-protection
 ```
 
-Alternatively, install with the Serverless **plugin command** (Serverless Framework 1.22 or higher):
-
-```sh
-sls plugin install -n serverless-stack-termination-protection
-```
-
 ### Automatically Enable Termination Protection After Deployment
 
 This plugin enables termination protection automatically after the deployment. Simply run the **deploy**:
