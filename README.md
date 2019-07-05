@@ -30,7 +30,7 @@ This plugin enables termination protection automatically after the deployment. S
 sls deploy
 ```
 
-### Automatically Enable Termination Protection After Deployment
+### Automatically Disable Termination Protection After Deployment
 
 This plugin can disable termination protection automatically after the deployment. Simply run the **deploy** with the **--disable-termination-protection** option:
 
