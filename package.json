@@ -1,6 +1,6 @@
 {
   "name": "serverless-stack-termination-protection",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Serverless plugin to update the CloudFormation stack termination protection",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
   "homepage": "https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection#readme",
   "devDependencies": {
     "eslint": "^6.0.1",
-    "eslint-config-google": "^0.13.0"
+    "eslint-config-google": "^0.13.0",
+    "lodash": "^4.17.14"
   },
   "dependencies": {}
 }

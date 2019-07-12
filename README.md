@@ -22,6 +22,8 @@ plugins:
   - serverless-stack-termination-protection
 ```
 
+## Using the Plugin
+
 ### Automatically Enable Termination Protection After Deployment
 
 This plugin enables termination protection automatically after the deployment. Simply run the **deploy**:
