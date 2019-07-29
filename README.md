@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-1. [Description] (#description)
-2. [Requirements] (#requirements)
-3. [Installation] (#installation)
-4. [Using the Plugin] (#using-the-plugin)
-5. [Notes] (#notes)
-6. [License] (#license)
+1. [Description](#description)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [Using the Plugin](#using-the-plugin)
+5. [Notes](#notes)
+6. [License](#license)
 
 ## Description
 
@@ -23,7 +23,7 @@ Following deployment, the Serverless Framework does not have the option to enabl
 
 ### Installing the Serverless Framework
 
-Visit the [Getting Started with the Serverless Framework] (https://serverless.com/framework/docs/getting-started) to get started with the Serverless Framework.
+Visit the [Getting Started with the Serverless Framework](https://serverless.com/framework/docs/getting-started) to get started with the Serverless Framework.
 
 Install with **npm**:
 
@@ -46,7 +46,7 @@ plugins:
   - serverless-stack-termination-protection
 ```
 
-See the [example(s)] (./examples).
+See the [example(s)](./examples).
 
 ## Using the Plugin
 
@@ -80,7 +80,7 @@ Future version will:
 * allow for specifying which `stage` to effect termination protection,
 * Delete the stack forceably using `sls remove --force`.
 
-Please request features or report problems using the [issues] (./issues) page.
+Please request features or report problems using the [issues](./issues) page.
 
 ## License
 
