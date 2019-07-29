@@ -1,0 +1,12 @@
+service: myService
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  myFunction:
+    handler: myFunction.handler
+
+plugins:
+  - serverless-stack-termination-protection
