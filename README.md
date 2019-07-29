@@ -80,7 +80,7 @@ Future version will:
 * allow for specifying which `stage` to effect termination protection,
 * Delete the stack forceably using `sls remove --force`.
 
-Please request features or report problems using the [issues](./issues) page.
+Please request features or report problems using the [issues](https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection/issues) page.
 
 ## License
 
