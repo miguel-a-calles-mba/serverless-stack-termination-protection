@@ -44,8 +44,7 @@ class StackTerminationProtection {
         this.provider = this.serverless.getProvider('aws');
         const serviceName = this.serverless.service.getServiceName();
         const stage = this.provider.getStage();
-        // TODO: Check this.serverless.service.provider.stackName
-        this.stackName = `${serviceName}-${stage}`;
+        this.stackName = this.serverless.service.provider.stackName || `${serviceName}-${stage}`;
         return this.updateTerminationProtection(this.isProtected)
             .then((stackId) => this.log(
                 'Successfully',
