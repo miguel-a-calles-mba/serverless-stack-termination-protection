@@ -79,13 +79,6 @@ custom:
 
 ### Notes
 
-This verion is not designed to work with a custom stack name defined in the `serverless.yml` file:
-
-```yaml
-provider:
-  stackName: custom-stack-name
-```
-
 Future version will:
 
 * Delete the stack forceably using `sls remove --force`.
