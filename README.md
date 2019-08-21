@@ -66,18 +66,21 @@ This plugin can disable termination protection automatically after the deploymen
 sls deploy --disable-termination-protection
 ```
 
-### Notes
+### Apply Protection to Specified Stages
 
-This verion is not designed to work with a custom stack name defined in the `serverless.yml` file:
+You may apply protection for specific stages by listing the stages under a **serverlessTerminationProtection** custom property in the serverless yaml file.
 
 ```yaml
-provider:
-  stackName: custom-stack-name
+custom:
+  serverlessTerminationProtection:
+    stages:
+      - prod
 ```
+
+### Notes
 
 Future version will:
 
-* allow for specifying which `stage` to effect termination protection,
 * Delete the stack forceably using `sls remove --force`.
 
 Please request features or report problems using the [issues](https://github.com/miguel-a-calles-mba/serverless-stack-termination-protection/issues) page.
