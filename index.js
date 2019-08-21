@@ -15,7 +15,7 @@ class StackTerminationProtection {
      */
     constructor(serverless, options) {
         this.serverless = serverless;
-        this.options = options
+        this.options = options;
         this.hooks = {
             // TODO: Add hook to disable protection prior to sls remove
             'after:deploy:deploy': this.afterDeployDeploy.bind(this),
@@ -41,29 +41,28 @@ class StackTerminationProtection {
      * @return {Promise<void>}
      */
     afterDeployDeploy() {
-        let protectedStages = []
+        let protectedStages = [];
         if (
             this.serverless.service.custom &&
             this.serverless.service.custom.serverlessTerminationProtection &&
             this.serverless.service.custom.serverlessTerminationProtection.stages &&
             Array.isArray(this.serverless.service.custom.serverlessTerminationProtection.stages)
         ) {
-            protectedStages = this.serverless.service.custom.serverlessTerminationProtection.stages
+            protectedStages = this.serverless.service.custom.serverlessTerminationProtection.stages;
         }
 
         this.provider = this.serverless.getProvider('aws');
         const serviceName = this.serverless.service.getServiceName();
         const stage = this.provider.getStage();
-        // TODO: Check this.serverless.service.provider.stackName
-        this.stackName = `${serviceName}-${stage}`;
+        this.stackName = this.serverless.service.provider.stackName || `${serviceName}-${stage}`;
 
-        let isProtected = true
+        let isProtected = true;
         // if disable option is set or stage is not included in predefined list, then set protection to false
         if (
             Boolean(this.options['disable-termination-protection']) ||
             (protectedStages.length !== 0 && !protectedStages.includes(stage))
         ) {
-            isProtected = false
+            isProtected = false;
         }
 
         return this.updateTerminationProtection(isProtected)
