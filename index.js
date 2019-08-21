@@ -15,7 +15,7 @@ class StackTerminationProtection {
      */
     constructor(serverless, options) {
         this.serverless = serverless;
-        this.isProtected = !Boolean(options['disable-termination-protection']);
+        this.options = options;
         this.hooks = {
             // TODO: Add hook to disable protection prior to sls remove
             'after:deploy:deploy': this.afterDeployDeploy.bind(this),
@@ -41,14 +41,34 @@ class StackTerminationProtection {
      * @return {Promise<void>}
      */
     afterDeployDeploy() {
+        let protectedStages = [];
+        if (
+            this.serverless.service.custom &&
+            this.serverless.service.custom.serverlessTerminationProtection &&
+            this.serverless.service.custom.serverlessTerminationProtection.stages &&
+            Array.isArray(this.serverless.service.custom.serverlessTerminationProtection.stages)
+        ) {
+            protectedStages = this.serverless.service.custom.serverlessTerminationProtection.stages;
+        }
+
         this.provider = this.serverless.getProvider('aws');
         const serviceName = this.serverless.service.getServiceName();
         const stage = this.provider.getStage();
         this.stackName = this.serverless.service.provider.stackName || `${serviceName}-${stage}`;
-        return this.updateTerminationProtection(this.isProtected)
+
+        let isProtected = true;
+        // if disable option is set or stage is not included in predefined list, then set protection to false
+        if (
+            Boolean(this.options['disable-termination-protection']) ||
+            (protectedStages.length !== 0 && !protectedStages.includes(stage))
+        ) {
+            isProtected = false;
+        }
+
+        return this.updateTerminationProtection(isProtected)
             .then((stackId) => this.log(
                 'Successfully',
-                `${this.isProtected ? 'en' : 'dis'}abled`,
+                `${isProtected ? 'en' : 'dis'}abled`,
                 'termination protection for stack',
                 stackId
             ))
