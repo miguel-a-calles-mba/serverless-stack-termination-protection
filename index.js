@@ -33,7 +33,7 @@ class StackTerminationProtection {
         args.forEach((x) => {
             output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
         });
-        console.log(output);
+        this.serverless.cli.log(output);
     }
 
     /**
