@@ -1,6 +1,6 @@
 {
   "name": "serverless-stack-termination-protection",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serverless plugin to update the CloudFormation stack termination protection",
   "main": "index.js",
   "scripts": {
