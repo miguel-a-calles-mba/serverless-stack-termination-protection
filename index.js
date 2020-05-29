@@ -29,11 +29,11 @@ class StackTerminationProtection {
      * @param  {...any} args
      */
     log(...args) {
-        let output = 'serverless-stack-termination-protection: ';
+        let output = 'stack-termination-protection: ';
         args.forEach((x) => {
             output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
         });
-        console.log(output);
+        this.serverless.cli.log(output);
     }
 
     /**
@@ -69,8 +69,7 @@ class StackTerminationProtection {
             .then((stackId) => this.log(
                 'Successfully',
                 `${isProtected ? 'en' : 'dis'}abled`,
-                'termination protection for stack',
-                stackId
+                'termination protection'
             ))
             .catch((err) => this.log(
                 'Failed to update termination protection:',
