@@ -30,7 +30,7 @@ class StackTerminationProtection {
      * @param  {...any} args
      */
     log(...args) {
-        let output = 'stack-termination-protection: ';
+        let output = 'STP Plugin: ';
         args.forEach((x) => {
             output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
         });
