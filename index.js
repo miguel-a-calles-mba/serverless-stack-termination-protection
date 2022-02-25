@@ -13,9 +13,10 @@ class StackTerminationProtection {
      * @param {*} serverless Serverless object.
      * @param {*} options Options object.
      */
-    constructor(serverless, options) {
+    constructor(serverless, options, { log }) {
         this.serverless = serverless;
         this.options = options;
+        this.log = log ? log : this.logLegacy;
         this.hooks = {
             // TODO: Add hook to disable protection prior to sls remove
             'after:deploy:deploy': this.afterDeployDeploy.bind(this),
@@ -28,7 +29,7 @@ class StackTerminationProtection {
      * Customized console log.
      * @param  {...any} args
      */
-    log(...args) {
+    logLegacy(...args) {
         let output = 'stack-termination-protection: ';
         args.forEach((x) => {
             output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
