@@ -25,9 +25,9 @@ class StackTerminationProtection {
 
         /* backward compatibility for Serverless V3 logging */
         this.log = log ? log : {
-            debug: serverless.cli.log,
-            info: serverless.cli.log,
-            warning: serverless.cli.log,
+            debug: this.serverless.cli.log,
+            info: this.serverless.cli.log,
+            warning: this.serverless.cli.log,
         };
     }
 
