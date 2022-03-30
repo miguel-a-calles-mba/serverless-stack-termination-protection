@@ -16,29 +16,19 @@ class StackTerminationProtection {
     constructor(serverless, options, { log }) {
         this.serverless = serverless;
         this.options = options;
-        this.slsLog = log;
         this.hooks = {
             // TODO: Add hook to disable protection prior to sls remove
             'after:deploy:deploy': this.afterDeployDeploy.bind(this),
         };
         // TODO: Updating termination protection without deploying.
         this.commands = {};
-    }
 
-    /**
-     * Customized console log.
-     * @param  {...any} args
-     */
-    log(...args) {
-        let output = 'STP Plugin: ';
-        args.forEach((x) => {
-            output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
-        });
-        if (this.slsLog) {
-            this.slsLog(output);
-        } else {
-            this.serverless.cli.log(output);
-        }
+        /* backward compatibility for Serverless V3 logging */
+        this.log = log ? log : {
+            debug: serverless.cli.log,
+            info: serverless.cli.log,
+            warning: serverless.cli.log,
+        };
     }
 
     /**
@@ -71,15 +61,13 @@ class StackTerminationProtection {
         }
 
         return this.updateTerminationProtection(isProtected)
-            .then((stackId) => this.log(
-                'Successfully',
-                `${isProtected ? 'en' : 'dis'}abled`,
-                'termination protection'
+            .then(() => this.log.info(
+                `${isProtected ? 'En' : 'Dis'}abled termination protection`,
             ))
-            .catch((err) => this.log(
-                'Failed to update termination protection:',
-                err
-            ));
+            .catch((err) => {
+                this.log.warning('Failed to update termination protection');
+                this.log.debug(JSON.stringify(err));
+            });
     }
 
     /**
