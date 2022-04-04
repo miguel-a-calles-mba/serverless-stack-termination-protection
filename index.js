@@ -13,7 +13,7 @@ class StackTerminationProtection {
      * @param {*} serverless Serverless object.
      * @param {*} options Options object.
      */
-    constructor(serverless, options) {
+    constructor(serverless, options, { log }) {
         this.serverless = serverless;
         this.options = options;
         this.hooks = {
@@ -22,18 +22,13 @@ class StackTerminationProtection {
         };
         // TODO: Updating termination protection without deploying.
         this.commands = {};
-    }
 
-    /**
-     * Customized console log.
-     * @param  {...any} args
-     */
-    log(...args) {
-        let output = 'stack-termination-protection: ';
-        args.forEach((x) => {
-            output += ` ${(typeof(x) === 'object') ? JSON.stringify(x) : x}`;
-        });
-        this.serverless.cli.log(output);
+        /* backward compatibility for Serverless V3 logging */
+        this.log = log ? log : {
+            debug: this.serverless.cli.log,
+            info: this.serverless.cli.log,
+            warning: this.serverless.cli.log,
+        };
     }
 
     /**
@@ -66,15 +61,13 @@ class StackTerminationProtection {
         }
 
         return this.updateTerminationProtection(isProtected)
-            .then((stackId) => this.log(
-                'Successfully',
-                `${isProtected ? 'en' : 'dis'}abled`,
-                'termination protection'
+            .then(() => this.log.info(
+                `${isProtected ? 'En' : 'Dis'}abled termination protection`,
             ))
-            .catch((err) => this.log(
-                'Failed to update termination protection:',
-                err
-            ));
+            .catch((err) => {
+                this.log.warning('Failed to update termination protection');
+                this.log.debug(JSON.stringify(err));
+            });
     }
 
     /**
