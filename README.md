@@ -1,5 +1,8 @@
 # Serverless Stack Termination Protection Plugin
 
+![npm version](https://badge.fury.io/js/serverless-stack-termination-protection.svg)
+![Snyk.io](https://snyk.io/test/github/miguel-a-calles-mba/serverless-stack-termination-protection)
+
 ## Table of Contents
 
 1. [Description](#description)
