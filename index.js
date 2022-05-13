@@ -13,7 +13,8 @@ class StackTerminationProtection {
      * @param {*} serverless Serverless object.
      * @param {*} options Options object.
      */
-    constructor(serverless, options, { log }) {
+    constructor(...args) {
+        const [serverless, options, { log }] = args;
         this.serverless = serverless;
         this.options = options;
         this.hooks = {
