@@ -18,7 +18,7 @@ Following deployment, the Serverless Framework does not have the option to enabl
 
 ## Requirements
 
-- Serverless Framework 1.x.
+- Serverless Framework 1.x or greater.
 - Node 8.x or greater.
 - NPM 6.x or greater.
 
