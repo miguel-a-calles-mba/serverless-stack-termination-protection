@@ -18,9 +18,11 @@ Following deployment, the Serverless Framework does not have the option to enabl
 
 ## Requirements
 
-- Serverless Framework 1.x or greater.
+- Serverless Framework 3.x or greater.
 - Node 8.x or greater.
 - NPM 6.x or greater.
+
+Use `serverless-stack-termination-protection@1` if you need support for Serverless Framework 2.x or below.
 
 ## Installation
 
@@ -63,10 +65,18 @@ sls deploy
 
 ### Automatically Disable Termination Protection After Deployment
 
-This plugin can disable termination protection automatically after the deployment. Simply run the **deploy** with the **--disable-termination-protection** option:
+This plugin can disable termination protection automatically after the deployment.
+
+Simply run the **deploy** with the **--param** option:
 
 ```sh
-sls deploy --disable-termination-protection
+sls deploy --param disable-termination-protection
+```
+
+If you are using multiple params, make sure to separate them:
+
+```sh
+sls deploy --param disable-termination-protection --param some-other-param
 ```
 
 ### Apply Protection to Specified Stages
