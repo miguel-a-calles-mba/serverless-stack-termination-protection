@@ -55,6 +55,7 @@ class StackTerminationProtection {
         // if disable option is set or stage is not included in predefined list, then set protection to false
         if (
             Boolean(this.options['disable-termination-protection']) ||
+            (this.options.param || []).includes('disable-termination-protection') ||
             (protectedStages.length !== 0 && !protectedStages.includes(stage))
         ) {
             isProtected = false;
